@@ -1,0 +1,107 @@
+buf0: SchedulerNode(ComputedBuffer)
+buf0.writes = [MemoryDep('buf0', 0, {})]
+buf0.unmet_dependencies = []
+buf0.met_dependencies = 
+    [   MemoryDep('primals_1', 0, {}),
+        MemoryDep('primals_1', 1, {}),
+        MemoryDep('primals_2', 0, {}),
+        MemoryDep('primals_3', 0, {}),
+        MemoryDep('primals_4', 0, {})]
+buf0.users = [NodeUser(node=SchedulerNode(name='buf1'), can_inplace=True, is_weak=False), NodeUser(node=OUTPUT, can_inplace=False, is_weak=False)]
+buf0.group.device = cpu
+buf0.group.iteration = ((), ())
+buf0.sizes = ([], [])
+class buf0_loop_body:
+    var_ranges = {}
+    index0 = 0
+    index1 = 1
+    def body(self, ops):
+        get_index = self.get_index('index0')
+        load = ops.load('primals_4', get_index)
+        get_index_1 = self.get_index('index0')
+        load_1 = ops.load('primals_3', get_index_1)
+        sub = ops.sub(load, load_1)
+        get_index_2 = self.get_index('index0')
+        load_2 = ops.load('primals_2', get_index_2)
+        get_index_3 = self.get_index('index0')
+        load_3 = ops.load('primals_1', get_index_3)
+        mul = ops.mul(load_3, load_3)
+        get_index_4 = self.get_index('index1')
+        load_4 = ops.load('primals_1', get_index_4)
+        mul_1 = ops.mul(load_4, load_4)
+        add = ops.add(mul, mul_1)
+        mul_2 = ops.mul(load_2, add)
+        sub_1 = ops.sub(sub, mul_2)
+        get_index_5 = self.get_index('index0')
+        store = ops.store('buf0', get_index_5, sub_1, None)
+        return store
+
+
+buf1: SchedulerNode(ComputedBuffer)
+buf1.writes = [MemoryDep('buf1', 0, {})]
+buf1.unmet_dependencies = [MemoryDep('buf0', 0, {})]
+buf1.met_dependencies = 
+    [   MemoryDep('primals_1', 0, {}),
+        MemoryDep('primals_1', 1, {}),
+        MemoryDep('primals_2', 0, {}),
+        MemoryDep('primals_3', 0, {})]
+buf1.users = [NodeUser(node=OUTPUT, can_inplace=False, is_weak=False)]
+buf1.group.device = cpu
+buf1.group.iteration = ((), ())
+buf1.sizes = ([], [])
+class buf1_loop_body:
+    var_ranges = {}
+    index0 = 0
+    index1 = 1
+    def body(self, ops):
+        get_index = self.get_index('index0')
+        load = ops.load('primals_2', get_index)
+        get_index_1 = self.get_index('index0')
+        load_1 = ops.load('primals_1', get_index_1)
+        mul = ops.mul(load_1, load_1)
+        get_index_2 = self.get_index('index1')
+        load_2 = ops.load('primals_1', get_index_2)
+        mul_1 = ops.mul(load_2, load_2)
+        add = ops.add(mul, mul_1)
+        mul_2 = ops.mul(load, add)
+        get_index_3 = self.get_index('index0')
+        load_3 = ops.load('primals_2', get_index_3)
+        get_index_4 = self.get_index('index0')
+        load_4 = ops.load('primals_1', get_index_4)
+        get_index_5 = self.get_index('index1')
+        load_5 = ops.load('primals_1', get_index_5)
+        truediv = ops.truediv(load_4, load_5)
+        add_1 = ops.add(load_3, truediv)
+        get_index_6 = self.get_index('index0')
+        load_6 = ops.load('primals_1', get_index_6)
+        constant = ops.constant(3.0, torch.float32)
+        mul_3 = ops.mul(load_6, constant)
+        get_index_7 = self.get_index('index0')
+        load_7 = ops.load('primals_2', get_index_7)
+        get_index_8 = self.get_index('index1')
+        load_8 = ops.load('primals_1', get_index_8)
+        mul_4 = ops.mul(load_7, load_8)
+        add_2 = ops.add(mul_3, mul_4)
+        mul_5 = ops.mul(add_1, add_2)
+        add_3 = ops.add(mul_2, mul_5)
+        get_index_9 = self.get_index('index0')
+        load_9 = ops.load('primals_2', get_index_9)
+        get_index_10 = self.get_index('index1')
+        load_10 = ops.load('primals_1', get_index_10)
+        get_index_11 = self.get_index('index0')
+        load_11 = ops.load('primals_3', get_index_11)
+        sub = ops.sub(load_10, load_11)
+        mul_6 = ops.mul(sub, sub)
+        get_index_12 = self.get_index('index0')
+        load_12 = ops.load('primals_1', get_index_12)
+        truediv_1 = ops.truediv(mul_6, load_12)
+        sub_1 = ops.sub(load_9, truediv_1)
+        get_index_13 = self.get_index('index0')
+        load_13 = ops.load('buf0', get_index_13)
+        truediv_2 = ops.truediv(sub_1, load_13)
+        add_4 = ops.add(add_3, truediv_2)
+        get_index_14 = self.get_index('index0')
+        store = ops.store('buf1', get_index_14, add_4, None)
+        return store
+
+

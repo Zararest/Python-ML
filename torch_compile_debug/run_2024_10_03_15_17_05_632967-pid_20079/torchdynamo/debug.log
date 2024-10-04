@@ -1,0 +1,249 @@
+Step 1: torchdynamo start tracing forward /home/azor/projects/Sber-ML/model-debug.py:9
+TRACE starts_line /home/azor/projects/Sber-ML/model-debug.py:9 in forward (Graph.forward)
+        def forward(self, x1, x2, x3):
+TRACE RESUME 0 []
+TRACE starts_line /home/azor/projects/Sber-ML/model-debug.py:10 in forward (Graph.forward)
+            w0 = self.w[0]
+TRACE LOAD_FAST self []
+TRACE LOAD_ATTR w [LazyVariableTracker()]
+wrap_to_fake L['self'].w (2,) StatefulSymbolicContext(dynamic_sizes=[<DimDynamic.STATIC: 2>], constraint_sizes=[None], view_base_context=None, tensor_source=NNModuleSource(base=AttrSource(base=LocalSource(local_name='self', cell_or_freevar=False), member='w', get_static=False)), shape_env_to_source_to_symbol_cache={}) <class 'torch.nn.parameter.Parameter'>
+TRACE LOAD_CONST 0 [TensorVariable()]
+TRACE BINARY_SUBSCR None [TensorVariable(), ConstantVariable()]
+TRACE FX call getitem from /home/azor/projects/Sber-ML/model-debug.py:10 in forward (Graph.forward)
+        w0 = self.w[0]
+             ~~~~~~^^^
+TRACE STORE_FAST w0 [TensorVariable()]
+TRACE starts_line /home/azor/projects/Sber-ML/model-debug.py:11 in forward (Graph.forward)
+            w1 = self.w[1]
+TRACE LOAD_FAST self []
+TRACE LOAD_ATTR w [LazyVariableTracker()]
+TRACE LOAD_CONST 1 [TensorVariable()]
+TRACE BINARY_SUBSCR None [TensorVariable(), ConstantVariable()]
+TRACE FX call getitem_1 from /home/azor/projects/Sber-ML/model-debug.py:11 in forward (Graph.forward)
+        w1 = self.w[1]
+             ~~~~~~^^^
+TRACE STORE_FAST w1 [TensorVariable()]
+TRACE starts_line /home/azor/projects/Sber-ML/model-debug.py:12 in forward (Graph.forward)
+            r1 = x3 * (w0 ** 2 + w1 ** 2)
+TRACE LOAD_FAST x3 []
+TRACE LOAD_FAST w0 [LazyVariableTracker()]
+TRACE LOAD_CONST 2 [LazyVariableTracker(), TensorVariable()]
+TRACE BINARY_OP 8 [LazyVariableTracker(), TensorVariable(), ConstantVariable()]
+TRACE FX call pow_1 from /home/azor/projects/Sber-ML/model-debug.py:12 in forward (Graph.forward)
+        r1 = x3 * (w0 ** 2 + w1 ** 2)
+                   ~~~^^~~
+TRACE LOAD_FAST w1 [LazyVariableTracker(), TensorVariable()]
+TRACE LOAD_CONST 2 [LazyVariableTracker(), TensorVariable(), TensorVariable()]
+TRACE BINARY_OP 8 [LazyVariableTracker(), TensorVariable(), TensorVariable(), ConstantVariable()]
+TRACE FX call pow_2 from /home/azor/projects/Sber-ML/model-debug.py:12 in forward (Graph.forward)
+        r1 = x3 * (w0 ** 2 + w1 ** 2)
+                             ~~~^^~~
+TRACE BINARY_OP 0 [LazyVariableTracker(), TensorVariable(), TensorVariable()]
+TRACE FX call add from /home/azor/projects/Sber-ML/model-debug.py:12 in forward (Graph.forward)
+        r1 = x3 * (w0 ** 2 + w1 ** 2)
+                   ~~~~~~~~^~~~~~~~~
+TRACE BINARY_OP 5 [LazyVariableTracker(), TensorVariable()]
+create_graph_input L_x3_ L['x3']
+wrap_to_fake L['x3'] () StatefulSymbolicContext(dynamic_sizes=[], constraint_sizes=[], view_base_context=StatefulSymbolicContext(dynamic_sizes=[<DimDynamic.STATIC: 2>], constraint_sizes=[None], view_base_context=None, tensor_source=AttrSource(base=LocalSource(local_name='x3', cell_or_freevar=False), member='_base', get_static=False), shape_env_to_source_to_symbol_cache={}), tensor_source=LocalSource(local_name='x3', cell_or_freevar=False), shape_env_to_source_to_symbol_cache={}) <class 'torch.Tensor'>
+TRACE FX call mul from /home/azor/projects/Sber-ML/model-debug.py:12 in forward (Graph.forward)
+        r1 = x3 * (w0 ** 2 + w1 ** 2)
+             ~~~^~~~~~~~~~~~~~~~~~~~~
+TRACE STORE_FAST r1 [TensorVariable()]
+TRACE starts_line /home/azor/projects/Sber-ML/model-debug.py:13 in forward (Graph.forward)
+            r2 = (x3 + w0 / w1) * (3.0 * w0 + x3 * w1)
+TRACE LOAD_FAST x3 []
+TRACE LOAD_FAST w0 [LazyVariableTracker()]
+TRACE LOAD_FAST w1 [LazyVariableTracker(), TensorVariable()]
+TRACE BINARY_OP 11 [LazyVariableTracker(), TensorVariable(), TensorVariable()]
+TRACE FX call truediv from /home/azor/projects/Sber-ML/model-debug.py:13 in forward (Graph.forward)
+        r2 = (x3 + w0 / w1) * (3.0 * w0 + x3 * w1)
+                   ~~~^~~~
+TRACE BINARY_OP 0 [LazyVariableTracker(), TensorVariable()]
+TRACE FX call add_1 from /home/azor/projects/Sber-ML/model-debug.py:13 in forward (Graph.forward)
+        r2 = (x3 + w0 / w1) * (3.0 * w0 + x3 * w1)
+              ~~~^~~~~~~~~
+TRACE LOAD_CONST 3.0 [TensorVariable()]
+TRACE LOAD_FAST w0 [TensorVariable(), ConstantVariable()]
+TRACE BINARY_OP 5 [TensorVariable(), ConstantVariable(), TensorVariable()]
+TRACE FX call mul_1 from /home/azor/projects/Sber-ML/model-debug.py:13 in forward (Graph.forward)
+        r2 = (x3 + w0 / w1) * (3.0 * w0 + x3 * w1)
+                               ~~~~^~~~
+TRACE LOAD_FAST x3 [TensorVariable(), TensorVariable()]
+TRACE LOAD_FAST w1 [TensorVariable(), TensorVariable(), LazyVariableTracker()]
+TRACE BINARY_OP 5 [TensorVariable(), TensorVariable(), LazyVariableTracker(), TensorVariable()]
+TRACE FX call mul_2 from /home/azor/projects/Sber-ML/model-debug.py:13 in forward (Graph.forward)
+        r2 = (x3 + w0 / w1) * (3.0 * w0 + x3 * w1)
+                                          ~~~^~~~
+TRACE BINARY_OP 0 [TensorVariable(), TensorVariable(), TensorVariable()]
+TRACE FX call add_2 from /home/azor/projects/Sber-ML/model-debug.py:13 in forward (Graph.forward)
+        r2 = (x3 + w0 / w1) * (3.0 * w0 + x3 * w1)
+                               ~~~~~~~~~^~~~~~~~~
+TRACE BINARY_OP 5 [TensorVariable(), TensorVariable()]
+TRACE FX call mul_3 from /home/azor/projects/Sber-ML/model-debug.py:13 in forward (Graph.forward)
+        r2 = (x3 + w0 / w1) * (3.0 * w0 + x3 * w1)
+             ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+TRACE STORE_FAST r2 [TensorVariable()]
+TRACE starts_line /home/azor/projects/Sber-ML/model-debug.py:14 in forward (Graph.forward)
+            r3 = x3 - (w1 - x2) ** 2 / w0
+TRACE LOAD_FAST x3 []
+TRACE LOAD_FAST w1 [LazyVariableTracker()]
+TRACE LOAD_FAST x2 [LazyVariableTracker(), TensorVariable()]
+TRACE BINARY_OP 10 [LazyVariableTracker(), TensorVariable(), LazyVariableTracker()]
+create_graph_input L_x2_ L['x2']
+wrap_to_fake L['x2'] () StatefulSymbolicContext(dynamic_sizes=[], constraint_sizes=[], view_base_context=StatefulSymbolicContext(dynamic_sizes=[<DimDynamic.STATIC: 2>], constraint_sizes=[None], view_base_context=None, tensor_source=AttrSource(base=LocalSource(local_name='x2', cell_or_freevar=False), member='_base', get_static=False), shape_env_to_source_to_symbol_cache={}), tensor_source=LocalSource(local_name='x2', cell_or_freevar=False), shape_env_to_source_to_symbol_cache={}) <class 'torch.Tensor'>
+TRACE FX call sub from /home/azor/projects/Sber-ML/model-debug.py:14 in forward (Graph.forward)
+        r3 = x3 - (w1 - x2) ** 2 / w0
+                   ~~~^~~~
+TRACE LOAD_CONST 2 [LazyVariableTracker(), TensorVariable()]
+TRACE BINARY_OP 8 [LazyVariableTracker(), TensorVariable(), ConstantVariable()]
+TRACE FX call pow_3 from /home/azor/projects/Sber-ML/model-debug.py:14 in forward (Graph.forward)
+        r3 = x3 - (w1 - x2) ** 2 / w0
+                  ~~~~~~~~~~^^~~
+TRACE LOAD_FAST w0 [LazyVariableTracker(), TensorVariable()]
+TRACE BINARY_OP 11 [LazyVariableTracker(), TensorVariable(), TensorVariable()]
+TRACE FX call truediv_1 from /home/azor/projects/Sber-ML/model-debug.py:14 in forward (Graph.forward)
+        r3 = x3 - (w1 - x2) ** 2 / w0
+                  ~~~~~~~~~~~~~~~^~~~
+TRACE BINARY_OP 10 [LazyVariableTracker(), TensorVariable()]
+TRACE FX call sub_1 from /home/azor/projects/Sber-ML/model-debug.py:14 in forward (Graph.forward)
+        r3 = x3 - (w1 - x2) ** 2 / w0
+             ~~~^~~~~~~~~~~~~~~~~~~~~
+TRACE STORE_FAST r3 [TensorVariable()]
+TRACE starts_line /home/azor/projects/Sber-ML/model-debug.py:15 in forward (Graph.forward)
+            return r1 + r2 + r3 / (x1 - x2 - r1)
+TRACE LOAD_FAST r1 []
+TRACE LOAD_FAST r2 [TensorVariable()]
+TRACE BINARY_OP 0 [TensorVariable(), TensorVariable()]
+TRACE FX call add_3 from /home/azor/projects/Sber-ML/model-debug.py:15 in forward (Graph.forward)
+        return r1 + r2 + r3 / (x1 - x2 - r1)
+               ~~~^~~~
+TRACE LOAD_FAST r3 [TensorVariable()]
+TRACE LOAD_FAST x1 [TensorVariable(), TensorVariable()]
+TRACE LOAD_FAST x2 [TensorVariable(), TensorVariable(), LazyVariableTracker()]
+TRACE BINARY_OP 10 [TensorVariable(), TensorVariable(), LazyVariableTracker(), LazyVariableTracker()]
+create_graph_input L_x1_ L['x1']
+wrap_to_fake L['x1'] () StatefulSymbolicContext(dynamic_sizes=[], constraint_sizes=[], view_base_context=StatefulSymbolicContext(dynamic_sizes=[<DimDynamic.STATIC: 2>], constraint_sizes=[None], view_base_context=None, tensor_source=AttrSource(base=LocalSource(local_name='x1', cell_or_freevar=False), member='_base', get_static=False), shape_env_to_source_to_symbol_cache={}), tensor_source=LocalSource(local_name='x1', cell_or_freevar=False), shape_env_to_source_to_symbol_cache={}) <class 'torch.Tensor'>
+TRACE FX call sub_2 from /home/azor/projects/Sber-ML/model-debug.py:15 in forward (Graph.forward)
+        return r1 + r2 + r3 / (x1 - x2 - r1)
+                               ~~~^~~~
+TRACE LOAD_FAST r1 [TensorVariable(), TensorVariable(), TensorVariable()]
+TRACE BINARY_OP 10 [TensorVariable(), TensorVariable(), TensorVariable(), TensorVariable()]
+TRACE FX call sub_3 from /home/azor/projects/Sber-ML/model-debug.py:15 in forward (Graph.forward)
+        return r1 + r2 + r3 / (x1 - x2 - r1)
+                               ~~~~~~~~^~~~
+TRACE BINARY_OP 11 [TensorVariable(), TensorVariable(), TensorVariable()]
+TRACE FX call truediv_2 from /home/azor/projects/Sber-ML/model-debug.py:15 in forward (Graph.forward)
+        return r1 + r2 + r3 / (x1 - x2 - r1)
+                         ~~~^~~~~~~~~~~~~~~~
+TRACE BINARY_OP 0 [TensorVariable(), TensorVariable()]
+TRACE FX call add_4 from /home/azor/projects/Sber-ML/model-debug.py:15 in forward (Graph.forward)
+        return r1 + r2 + r3 / (x1 - x2 - r1)
+               ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+TRACE RETURN_VALUE None [TensorVariable()]
+Step 1: torchdynamo done tracing forward (RETURN_VALUE)
+RETURN_VALUE triggered compile
+COMPILING GRAPH due to GraphCompileReason(reason='return_value', user_stack=[<FrameSummary file /home/azor/projects/Sber-ML/model-debug.py, line 15 in forward>], graph_break=False)
+TRACED GRAPH
+ ===== __compiled_fn_0 =====
+ /home/azor/.conda/envs/ML/lib/python3.11/site-packages/torch/fx/_lazy_graph_module.py class GraphModule(torch.nn.Module):
+    def forward(self, L_x3_ : torch.Tensor, L_x2_ : torch.Tensor, L_x1_ : torch.Tensor):
+        l_x3_ = L_x3_
+        l_x2_ = L_x2_
+        l_x1_ = L_x1_
+        
+        # File: /home/azor/projects/Sber-ML/model-debug.py:10 in forward, code: w0 = self.w[0]
+        l__self___w = self.L__self___w
+        w0 = l__self___w[0]
+        
+        # File: /home/azor/projects/Sber-ML/model-debug.py:11 in forward, code: w1 = self.w[1]
+        w1 = l__self___w[1];  l__self___w = None
+        
+        # File: /home/azor/projects/Sber-ML/model-debug.py:12 in forward, code: r1 = x3 * (w0 ** 2 + w1 ** 2)
+        pow_1 = w0 ** 2
+        pow_2 = w1 ** 2
+        add = pow_1 + pow_2;  pow_1 = pow_2 = None
+        r1 = l_x3_ * add;  add = None
+        
+        # File: /home/azor/projects/Sber-ML/model-debug.py:13 in forward, code: r2 = (x3 + w0 / w1) * (3.0 * w0 + x3 * w1)
+        truediv = w0 / w1
+        add_1 = l_x3_ + truediv;  truediv = None
+        mul_1 = 3.0 * w0
+        mul_2 = l_x3_ * w1
+        add_2 = mul_1 + mul_2;  mul_1 = mul_2 = None
+        r2 = add_1 * add_2;  add_1 = add_2 = None
+        
+        # File: /home/azor/projects/Sber-ML/model-debug.py:14 in forward, code: r3 = x3 - (w1 - x2) ** 2 / w0
+        sub = w1 - l_x2_;  w1 = None
+        pow_3 = sub ** 2;  sub = None
+        truediv_1 = pow_3 / w0;  pow_3 = w0 = None
+        r3 = l_x3_ - truediv_1;  l_x3_ = truediv_1 = None
+        
+        # File: /home/azor/projects/Sber-ML/model-debug.py:15 in forward, code: return r1 + r2 + r3 / (x1 - x2 - r1)
+        add_3 = r1 + r2;  r2 = None
+        sub_2 = l_x1_ - l_x2_;  l_x1_ = l_x2_ = None
+        sub_3 = sub_2 - r1;  sub_2 = r1 = None
+        truediv_2 = r3 / sub_3;  r3 = sub_3 = None
+        add_4 = add_3 + truediv_2;  add_3 = truediv_2 = None
+        return (add_4,)
+        
+
+TRACED GRAPH
+ __compiled_fn_0 /home/azor/.conda/envs/ML/lib/python3.11/site-packages/torch/fx/_lazy_graph_module.py opcode         name         target                       args                kwargs
+-------------  -----------  ---------------------------  ------------------  --------
+placeholder    l_x3_        L_x3_                        ()                  {}
+placeholder    l_x2_        L_x2_                        ()                  {}
+placeholder    l_x1_        L_x1_                        ()                  {}
+get_attr       l__self___w  L__self___w                  ()                  {}
+call_function  w0           <built-in function getitem>  (l__self___w, 0)    {}
+call_function  w1           <built-in function getitem>  (l__self___w, 1)    {}
+call_function  pow_1        <built-in function pow>      (w0, 2)             {}
+call_function  pow_2        <built-in function pow>      (w1, 2)             {}
+call_function  add          <built-in function add>      (pow_1, pow_2)      {}
+call_function  r1           <built-in function mul>      (l_x3_, add)        {}
+call_function  truediv      <built-in function truediv>  (w0, w1)            {}
+call_function  add_1        <built-in function add>      (l_x3_, truediv)    {}
+call_function  mul_1        <built-in function mul>      (3.0, w0)           {}
+call_function  mul_2        <built-in function mul>      (l_x3_, w1)         {}
+call_function  add_2        <built-in function add>      (mul_1, mul_2)      {}
+call_function  r2           <built-in function mul>      (add_1, add_2)      {}
+call_function  sub          <built-in function sub>      (w1, l_x2_)         {}
+call_function  pow_3        <built-in function pow>      (sub, 2)            {}
+call_function  truediv_1    <built-in function truediv>  (pow_3, w0)         {}
+call_function  r3           <built-in function sub>      (l_x3_, truediv_1)  {}
+call_function  add_3        <built-in function add>      (r1, r2)            {}
+call_function  sub_2        <built-in function sub>      (l_x1_, l_x2_)      {}
+call_function  sub_3        <built-in function sub>      (sub_2, r1)         {}
+call_function  truediv_2    <built-in function truediv>  (r3, sub_3)         {}
+call_function  add_4        <built-in function add>      (add_3, truediv_2)  {}
+output         output       output                       ((add_4,),)         {}
+
+TRACED GRAPH TENSOR SIZES
+===== __compiled_fn_0 =====
+l_x3_: ()
+l_x2_: ()
+l_x1_: ()
+l__self___w: (2,)
+w0: ()
+w1: ()
+pow_1: ()
+pow_2: ()
+add: ()
+r1: ()
+truediv: ()
+add_1: ()
+mul_1: ()
+mul_2: ()
+add_2: ()
+r2: ()
+sub: ()
+pow_3: ()
+truediv_1: ()
+r3: ()
+add_3: ()
+sub_2: ()
+sub_3: ()
+truediv_2: ()
+add_4: ()
+
+Step 2: calling compiler function inductor
+Step 2: done compiler function inductor
